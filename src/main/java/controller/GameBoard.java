@@ -103,26 +103,26 @@ public class GameBoard {
         return this.spaceship;
     }
 
-    public AudioPlayerInterface getAudioPlayer() {
-        return this.audioPlayer;
-    }
-
-    public void setAudioPlayer(AudioPlayerInterface audioPlayer) {
-        this.audioPlayer = audioPlayer;
-    }
+//    public AudioPlayerInterface getAudioPlayer() {
+//        return this.audioPlayer;
+//    }
+//
+//    public void setAudioPlayer(AudioPlayerInterface audioPlayer) {
+//        this.audioPlayer = audioPlayer;
+//    }
 
     /**
      * Updates the position of each car.
      */
     public void update() {
-        moveCars();
+        moveDebris();
     }
 
     /**
      * Starts the game. Cars start to move and background music starts to play.
      */
     public void startGame() {
-        playMusic();
+        //playMusic();
         this.running = true;
     }
 
@@ -130,61 +130,61 @@ public class GameBoard {
      * Stops the game. Cars stop moving and background music stops playing.
      */
     public void stopGame() {
-        stopMusic();
+        //stopMusic();
         this.running = false;
     }
 
     /**
      * Starts the background music.
      */
-    public void playMusic() {
-        this.audioPlayer.playBackgroundMusic();
-    }
+//    public void playMusic() {
+//        this.audioPlayer.playBackgroundMusic();
+//    }
 
     /**
      * Stops the background music.
      */
-    public void stopMusic() {
-        this.audioPlayer.stopBackgroundMusic();
-    }
+//    public void stopMusic() {
+//        this.audioPlayer.stopBackgroundMusic();
+//    }
 
     /**
      * Moves all cars on this game board one step further.
      */
-    public void moveCars() {
+    public void moveDebris() {
         // update the positions of the player car and the autonomous cars
-        for (Car car : this.cars) {
-            car.drive(size);
+        for (Debris debris : this.debrisList) {
+            debris.move(size);
         }
-        this.player.getCar().drive(size);
+        //this.spaceship.getCar().drive(size);
 
         // iterate through all cars (except player car) and check if it is crunched
-        for (Car car : cars) {
-            if (car.isCrunched()) {
+        for (Debris debris : debrisList) {
+            if (debris.isCrunched()) {
                 // because there is no need to check for a collision
                 continue;
             }
 
-            Collision collision = new Collision(player.getCar(), car);
+            Collision collision = new Collision(spaceship.shoot(), debris);
 
-            if (collision.isCrash()) {
-                Car winner = collision.evaluate();
-                printWinner(winner);
-                audioPlayer.playCrashSound();
-                // TODO Backlog Item 12: Play crash sound
-                // Hint: take a look at AudioPlayer
-            }
+//            if (collision.isCrash()) {
+//                Car winner = collision.evaluate();
+//                printWinner(winner);
+//                audioPlayer.playCrashSound();
+//                // TODO Backlog Item 12: Play crash sound
+//                // Hint: take a look at AudioPlayer
+//            }
         }
     }
 
-    private void printWinner(Car winner) {
-        if (winner == this.player.getCar()) {
-            System.out.println("The player's car won the collision!");
-        } else if (winner != null) {
-            System.out.println(winner.getClass().getSimpleName() + " won the collision!");
-        } else {
-            System.err.println("Winner car was null!");
-        }
-    }
+//    private void printWinner(Car winner) {
+//        if (winner == this.player.getCar()) {
+//            System.out.println("The player's car won the collision!");
+//        } else if (winner != null) {
+//            System.out.println(winner.getClass().getSimpleName() + " won the collision!");
+//        } else {
+//            System.err.println("Winner car was null!");
+//        }
+//    }
 }
 

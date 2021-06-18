@@ -42,6 +42,6 @@ public class MouseSteering {
             degree = ANGLE_270_DEGREES + degree;
         }
 
-        spaceship.setDirection(degree);
+        //spaceship.setDirection(degree);
     }
 }
